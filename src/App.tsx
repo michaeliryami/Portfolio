@@ -1,0 +1,588 @@
+import { useState } from 'react'
+import { 
+  Mail, 
+  MapPin, 
+  Phone, 
+  Briefcase, 
+  Image as ImageIcon,
+  Github,
+  Linkedin,
+  CheckCircle,
+  ChevronLeft,
+  ChevronRight,
+  X
+} from 'lucide-react'
+import './App.css'
+
+interface Project {
+  id: string
+  title: string
+  description: string
+  technologies: string[]
+  githubUrl: string
+  demoUrl?: string
+  images?: string[]
+  featured: boolean
+}
+
+interface Experience {
+  id: string
+  company: string
+  position: string
+  location: string
+  duration: string
+  technologies: string[]
+  achievements: string[]
+}
+
+function App() {
+  const [activeSection, setActiveSection] = useState('home')
+  const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({})
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalProject, setModalProject] = useState<Project | null>(null)
+
+  const projects: Project[] = [
+    {
+      id: 'quad',
+      title: 'Quad',
+      description: 'A full-stack marketplace for college students with secure authentication, Stripe payments, student email verification, real-time messaging, AI-powered search/tagging for image-based listings, and cart/order flows. Launching soon to iOS App Store.',
+      technologies: ['TypeScript', 'Node.js', 'React Native', 'MySQL', 'Express', 'Socket.io', 'Cloudinary', 'Stripe', 'Expo', 'Tamagui'],
+      githubUrl: 'https://github.com/michaeliryami/quad',
+      demoUrl: 'https://quad-app.com',
+      images: ['/quad/1.PNG', '/quad/2.PNG', '/quad/3.PNG', '/quad/4.PNG', '/quad/5.PNG', '/quad/6.PNG', '/quad/7.PNG', '/quad/8.PNG'],
+      featured: true
+    },
+    {
+      id: 'noptr',
+      title: 'NOPTR',
+      description: 'A full-stack prompt engineering platform with version diffing, side-by-side output comparison, AI-powered prompt suggestions, feedback-driven prompt refinement, and adaptive context management for advanced system prompt development.',
+      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Render', 'Vercel', 'Chakra-ui'],
+      githubUrl: 'https://github.com/michaeliryami/noptr',
+      demoUrl: 'https://noptr.app',
+      images: ['/noptr/1.png', '/noptr/2.png', '/noptr/3.png', '/noptr/4.png'],
+      featured: true
+    },
+    {
+      id: 'simple-sublet',
+      title: 'Simple Sublet',
+      description: 'A housing marketplace enabling users to list short-term sublets, match with renters, and coordinate directly through in-platform messaging.',
+      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Socket.io', 'Chakra-ui', 'Render', 'Vercel'],
+      githubUrl: 'https://github.com/michaeliryami/simple-sublet',
+      demoUrl: 'https://simplesublet.co',
+      images: ['/sublet/1.png', '/sublet/2.png', '/sublet/3.png', '/sublet/4.png', '/sublet/5.png', '/sublet/6.png', '/sublet/7.png', '/sublet/8.png'],
+      featured: true
+    },
+    {
+      id: 'portfolio',
+      title: 'Portfolio',
+      description: 'This responsive portfolio website showcasing my work and skills as a software engineer.',
+      technologies: ['React', 'TypeScript', 'Vite', 'CSS3'],
+      githubUrl: 'https://github.com/michaeliryami/portfolio',
+      images: ['/home.png'],
+      featured: false
+    }
+  ]
+
+  const experiences: Experience[] = [
+    {
+      id: 'alias-intelligence',
+      company: 'Alias Intelligence',
+      position: 'Full Stack Software Engineering Intern',
+      location: 'Austin, TX',
+      duration: 'June 2025 – Present',
+      technologies: ['TypeScript', 'React', 'Express', 'Node.js', 'AWS', 'V0', 'Tailwind', 'Python', 'Docker'],
+      achievements: [
+        'Reported directly to the CTO on various strategic initiatives to improve customer experience, enhance the overall product offering, and increase productivity of the Alias team in supporting background check-related tasks',
+        'Implemented Alias Dispatch to efficiently process customer feedback into a centralized location within the database and internal portal, and integrated it with a Slack API to alert necessary teams in real-time; this lowered the time to respond to client concerns and increased overall customer service and satisfaction',
+        'Integrated Client Relations Brain through connecting the Missive webhook and the internal API to completely automate the review of and response to inbound emails to the client relations team by leveraging LLMs to parse the contents, sentiment and key words; saved 1-2 hours in response and task completion time per email through automating important flows such as Dispatch and Order Entry'
+      ]
+    },
+    {
+      id: 'coder-school',
+      company: 'The Coder School',
+      position: 'Code Coach',
+      location: 'Syosset, NY',
+      duration: '2022 - 2024',
+      technologies: ['Python', 'Java', 'Scratch', 'Lua', 'HTML5'],
+      achievements: [
+        'Taught classes to over 50 students in various programming languages (i.e., Python, Java, Scratch, Lua, HTML5)'
+      ]
+    }
+  ]
+
+  const nextImage = (projectId: string) => {
+    const project = projects.find(p => p.id === projectId)
+    if (project?.images) {
+      const currentIndex = activeImageIndex[projectId] || 0
+      const nextIndex = (currentIndex + 1) % project.images.length
+      setActiveImageIndex(prev => ({ ...prev, [projectId]: nextIndex }))
+    }
+  }
+
+  const prevImage = (projectId: string) => {
+    const project = projects.find(p => p.id === projectId)
+    if (project?.images) {
+      const currentIndex = activeImageIndex[projectId] || 0
+      const prevIndex = currentIndex === 0 ? project.images.length - 1 : currentIndex - 1
+      setActiveImageIndex(prev => ({ ...prev, [projectId]: prevIndex }))
+    }
+  }
+
+  const openImageModal = (project: Project) => {
+    setModalProject(project)
+    setModalOpen(true)
+  }
+
+  const closeImageModal = () => {
+    setModalOpen(false)
+    setModalProject(null)
+  }
+
+  const modalNextImage = () => {
+    if (modalProject?.images) {
+      const currentIndex = activeImageIndex[modalProject.id] || 0
+      const nextIndex = (currentIndex + 1) % modalProject.images.length
+      setActiveImageIndex(prev => ({ ...prev, [modalProject.id]: nextIndex }))
+    }
+  }
+
+  const modalPrevImage = () => {
+    if (modalProject?.images) {
+      const currentIndex = activeImageIndex[modalProject.id] || 0
+      const prevIndex = currentIndex === 0 ? modalProject.images.length - 1 : currentIndex - 1
+      setActiveImageIndex(prev => ({ ...prev, [modalProject.id]: prevIndex }))
+    }
+  }
+
+  const goToModalImage = (index: number) => {
+    if (modalProject) {
+      setActiveImageIndex(prev => ({ ...prev, [modalProject.id]: index }))
+    }
+  }
+
+  return (
+    <div className="app">
+      {/* Header/Navigation */}
+      <header className="header">
+        <div className="header-left">
+          <div className="logo">
+            <span className="logo-text">Michael Iryami</span>
+          </div>
+        </div>
+        
+        <nav className="nav-center">
+          <button 
+            className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
+            onClick={() => setActiveSection('home')}
+          >
+            Home
+          </button>
+          <button 
+            className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
+            onClick={() => setActiveSection('about')}
+          >
+            About
+          </button>
+          <button 
+            className={`nav-link ${activeSection === 'experience' ? 'active' : ''}`}
+            onClick={() => setActiveSection('experience')}
+          >
+            Experience
+          </button>
+          <button 
+            className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
+            onClick={() => setActiveSection('projects')}
+          >
+            Projects
+          </button>
+          <button 
+            className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+            onClick={() => setActiveSection('contact')}
+          >
+            Contact
+          </button>
+        </nav>
+        
+        <div className="header-right">
+          <a href="https://github.com/michaeliryami" className="social-icon github" target="_blank" rel="noopener noreferrer">
+            <Github size={20} />
+          </a>
+          <a href="https://www.linkedin.com/in/michael-iryami-359698330/" className="social-icon linkedin" target="_blank" rel="noopener noreferrer">
+            <Linkedin size={20} />
+          </a>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Home Section */}
+        {activeSection === 'home' && (
+          <section className="hero-section">
+            <div className="hero-content">
+              <div className="hero-profile">
+                <div className="profile-image">
+                  <img src="/headshot.jpeg" alt="Michael Iryami" className="profile-photo" />
+                </div>
+                <div className="hero-text">
+                  <h1 className="hero-title">Michael Iryami</h1>
+                  <p className="hero-subtitle">Software Engineer</p>
+                  <div className="hero-details">
+                    <p><MapPin size={16} /> New York, NY</p>
+                    <p><Mail size={16} /> miryami@umich.edu</p>
+                    <p><Phone size={16} /> (516) 591-7000</p>
+                  </div>
+                  <button className="cta-button" onClick={() => setActiveSection('projects')}>
+                    View My Work
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* About Section */}
+        {activeSection === 'about' && (
+          <section className="about-section">
+            <div className="about-header">
+              <h2 className="section-title">About Me</h2>
+              <div className="about-content">
+                <div className="about-text">
+                  <p className="about-intro">
+                    I'm a passionate Software Engineer currently pursuing my degree at the University of Michigan with a 3.9/4.0 GPA. 
+                    I specialize in full-stack development and have a proven track record of building innovative solutions that solve real-world problems.
+                  </p>
+                  
+                  <div className="education-section">
+                    <h3>Education</h3>
+                    <div className="education-item">
+                      <h4>University of Michigan</h4>
+                      <p className="education-details">
+                        <span className="gpa">GPA: 3.9/4.0</span> | 
+                        <span className="graduation">Anticipated Graduation: May 2028</span>
+                      </p>
+                      <p className="education-activities">
+                        Member of Michigan Quantitative Consulting and Finance Group; worked in a team to develop a pairs trading algorithm to identify and analyze cointegrated stocks and purchase the undervalued stock while shorting the overvalued stock
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="skills-section">
+                    <h3>Technical Skills</h3>
+                    <div className="skills-grid">
+                      <div className="skill-category">
+                        <h4>Languages</h4>
+                        <ul>
+                          <li>TypeScript & JavaScript</li>
+                          <li>Python</li>
+                          <li>Java</li>
+                          <li>C++</li>
+                          <li>R</li>
+                          <li>SQL</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="skill-category">
+                        <h4>Frontend & Mobile</h4>
+                        <ul>
+                          <li>React & React Native</li>
+                          <li>Expo & Tamagui</li>
+                          <li>Chakra UI & Tailwind</li>
+                          <li>HTML5 & CSS3</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="skill-category">
+                        <h4>Backend & DevOps</h4>
+                        <ul>
+                          <li>Node.js & Express</li>
+                          <li>Supabase & PostgreSQL</li>
+                          <li>MySQL & MongoDB</li>
+                          <li>AWS Development Kit</li>
+                          <li>Docker</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="skill-category">
+                        <h4>AI & ML</h4>
+                        <ul>
+                          <li>Scikit Learn</li>
+                          <li>TensorFlow</li>
+                          <li>LLM Integration</li>
+                          <li>AI-powered Search</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="interests-section">
+                    <h3>Interests</h3>
+                    <div className="interests-tags">
+                      <span className="interest-tag">New York Mets</span>
+                      <span className="interest-tag">Michigan Sports</span>
+                      <span className="interest-tag">Pickleball</span>
+                      <span className="interest-tag">Settlers of Catan</span>
+                      <span className="interest-tag">Survivor</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Experience Section */}
+        {activeSection === 'experience' && (
+          <section className="experience-section">
+            <div className="experience-header">
+              <h2 className="section-title">Work Experience</h2>
+              <p className="section-subtitle">My professional journey and achievements</p>
+            </div>
+            
+            <div className="experience-timeline">
+              {experiences.map((experience) => (
+                <div key={experience.id} className="experience-card">
+                  <div className="experience-header-card">
+                    <div className="experience-company">
+                      <h3>{experience.company}</h3>
+                      <p className="experience-position">{experience.position}</p>
+                    </div>
+                    <div className="experience-meta">
+                      <p className="experience-location">{experience.location}</p>
+                      <p className="experience-duration">{experience.duration}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="experience-technologies">
+                    {experience.technologies.map((tech) => (
+                      <span key={tech} className="tech-tag experience-tech">{tech}</span>
+                    ))}
+                  </div>
+                  
+                  <div className="experience-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      {experience.achievements.map((achievement, index) => (
+                        <li key={index}>{achievement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+        
+        {/* Projects Section */}
+        {activeSection === 'projects' && (
+          <section className="projects-section">
+            <div className="projects-header">
+              <h2 className="section-title">Featured Projects</h2>
+              <p className="section-subtitle">A showcase of my recent work and technical expertise</p>
+            </div>
+            
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <div key={project.id} className={`project-card ${project.featured ? 'featured' : ''}`} data-project={project.id}>
+                  <div className="project-image">
+                    {project.images && project.images.length > 0 ? (
+                      <div className="image-slideshow">
+                        <img 
+                          src={project.images[activeImageIndex[project.id] || 0]} 
+                          alt={`${project.title} screenshot`}
+                          className="slideshow-image"
+                          onClick={() => openImageModal(project)}
+                        />
+                        <div className="slideshow-controls">
+                          <button 
+                            className="slideshow-btn prev-btn"
+                            onClick={() => prevImage(project.id)}
+                            aria-label="Previous image"
+                          >
+                            <ChevronLeft size={20} />
+                          </button>
+                          <div className="slideshow-indicators">
+                            {project.images.map((_, index) => (
+                              <button
+                                key={index}
+                                className={`indicator ${index === (activeImageIndex[project.id] || 0) ? 'active' : ''}`}
+                                onClick={() => setActiveImageIndex(prev => ({ ...prev, [project.id]: index }))}
+                                aria-label={`Go to image ${index + 1}`}
+                              />
+                            ))}
+                          </div>
+                          <button 
+                            className="slideshow-btn next-btn"
+                            onClick={() => nextImage(project.id)}
+                            aria-label="Next image"
+                          >
+                            <ChevronRight size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="image-placeholder">
+                        <ImageIcon size={48} />
+                        <p>Project Screenshot</p>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="project-content">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    
+                    <div className="project-technologies">
+                      {project.technologies.map((tech) => (
+                        <span key={tech} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                    
+                    <div className="project-links">
+                      <a 
+                        href={project.githubUrl} 
+                        className="project-link github-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github size={18} />
+                        GitHub
+                      </a>
+                      {project.id === 'quad' ? (
+                        <div className="project-link demo-link launching-soon">
+                          <CheckCircle size={18} />
+                          Launching Soon to App Store
+                        </div>
+                      ) : project.demoUrl ? (
+                        <a 
+                          href={project.demoUrl} 
+                          className="project-link demo-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <CheckCircle size={18} />
+                          Live Demo
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+        
+        {/* Contact Section */}
+        {/* Contact Section */}
+        {activeSection === 'contact' && (
+          <section className="contact-section">
+            <div className="contact-header">
+              <h2 className="section-title">Get In Touch</h2>
+              <p className="section-subtitle">I'm always interested in new opportunities and collaborations</p>
+            </div>
+            
+            <div className="contact-content">
+              <div className="contact-info">
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <h3>Email</h3>
+                    <p>miryami@umich.edu</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h3>Location</h3>
+                    <p>New York, NY</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h3>Phone</h3>
+                    <p>(516) 591-7000</p>
+                  </div>
+                </div>
+                
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <Briefcase size={24} />
+                  </div>
+                  <div>
+                    <h3>Availability</h3>
+                    <p>Open to new opportunities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}      </main>
+
+      {/* Image Modal */}
+      {modalOpen && modalProject && (
+        <div className={`image-modal ${modalOpen ? 'open' : ''}`} onClick={closeImageModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeImageModal} aria-label="Close modal">
+              <X size={18} />
+            </button>
+            
+            {modalProject.images && modalProject.images.length > 0 ? (
+              <img 
+                src={modalProject.images[activeImageIndex[modalProject.id] || 0]} 
+                alt={`${modalProject.title} screenshot`}
+                className="modal-image"
+              />
+            ) : (
+              <div className="image-placeholder">
+                <ImageIcon size={48} />
+                <p>Project Screenshot</p>
+              </div>
+            )}
+            
+            {modalProject.images && modalProject.images.length > 1 && (
+              <>
+                <div className="modal-navigation">
+                  <button 
+                    className="modal-nav-btn"
+                    onClick={modalPrevImage}
+                    aria-label="Previous image"
+                  >
+                    Previous
+                  </button>
+                  <button 
+                    className="modal-nav-btn"
+                    onClick={modalNextImage}
+                    aria-label="Next image"
+                  >
+                    Next
+                  </button>
+                </div>
+                
+                <div className="modal-indicators">
+                  {modalProject.images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`modal-indicator ${index === (activeImageIndex[modalProject.id] || 0) ? 'active' : ''}`}
+                      onClick={() => goToModalImage(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default App
