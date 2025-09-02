@@ -7,6 +7,7 @@ import {
   Image as ImageIcon,
   Github,
   Linkedin,
+  FileText,
   CheckCircle,
   ChevronLeft,
   ChevronRight,
@@ -209,6 +210,9 @@ function App() {
           </a>
           <a href="https://www.linkedin.com/in/michael-iryami-359698330/" className="social-icon linkedin" target="_blank" rel="noopener noreferrer">
             <Linkedin size={20} />
+          </a>
+          <a href="/resume.docx" className="social-icon resume" target="_blank" rel="noopener noreferrer">
+            <FileText size={20} />
           </a>
         </div>
       </header>
