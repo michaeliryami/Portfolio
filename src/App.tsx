@@ -464,7 +464,7 @@ function App() {
                           rel="noopener noreferrer"
                         >
                           <CheckCircle size={18} />
-                          Live Demo
+                          Live Link
                         </a>
                       ) : null}
                     </div>
