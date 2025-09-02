@@ -48,7 +48,7 @@ function App() {
       title: 'Quad',
       description: 'A full-stack marketplace for college students with secure authentication, Stripe payments, student email verification, real-time messaging, AI-powered search/tagging for image-based listings, and cart/order flows. Launching soon to iOS App Store.',
       technologies: ['TypeScript', 'Node.js', 'React Native', 'MySQL', 'Express', 'Socket.io', 'Cloudinary', 'Stripe', 'Expo', 'Tamagui'],
-      githubUrl: 'https://github.com/michaeliryami/quad',
+      githubUrl: 'https://github.com/michaeliryami/Quad-App',
       demoUrl: 'https://quad-app.com',
       images: ['/quad/1.PNG', '/quad/2.PNG', '/quad/3.PNG', '/quad/4.PNG', '/quad/5.PNG', '/quad/6.PNG', '/quad/7.PNG', '/quad/8.PNG'],
       featured: true
@@ -58,7 +58,7 @@ function App() {
       title: 'NOPTR',
       description: 'A full-stack prompt engineering platform with version diffing, side-by-side output comparison, AI-powered prompt suggestions, feedback-driven prompt refinement, and adaptive context management for advanced system prompt development.',
       technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Render', 'Vercel', 'Chakra-ui'],
-      githubUrl: 'https://github.com/michaeliryami/noptr',
+      githubUrl: 'https://github.com/michaeliryami/LLP',
       demoUrl: 'https://noptr.app',
       images: ['/noptr/1.png', '/noptr/2.png', '/noptr/3.png', '/noptr/4.png'],
       featured: true
@@ -68,7 +68,7 @@ function App() {
       title: 'Simple Sublet',
       description: 'A housing marketplace enabling users to list short-term sublets, match with renters, and coordinate directly through in-platform messaging.',
       technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Socket.io', 'Chakra-ui', 'Render', 'Vercel'],
-      githubUrl: 'https://github.com/michaeliryami/simple-sublet',
+      githubUrl: 'https://github.com/michaeliryami/College-Sublet',
       demoUrl: 'https://simplesublet.co',
       images: ['/sublet/1.png', '/sublet/2.png', '/sublet/3.png', '/sublet/4.png', '/sublet/5.png', '/sublet/6.png', '/sublet/7.png', '/sublet/8.png'],
       featured: true
@@ -78,7 +78,7 @@ function App() {
       title: 'Portfolio',
       description: 'This responsive portfolio website showcasing my work and skills as a software engineer.',
       technologies: ['React', 'TypeScript', 'Vite', 'CSS3'],
-      githubUrl: 'https://github.com/michaeliryami/portfolio',
+      githubUrl: 'https://github.com/michaeliryami/Portfolio',
       images: ['/home.png'],
       featured: false
     }
