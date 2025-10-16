@@ -221,7 +221,7 @@ function App() {
             <div className="hero-content">
               <div className="hero-profile">
                 <div className="profile-image">
-                  <img src="/headshot.jpeg" alt="Michael Iryami" className="profile-photo" />
+                  <img src="/headshot.png" alt="Michael Iryami" className="profile-photo" />
                 </div>
                 <div className="hero-text">
                   <h1 className="hero-title">Michael Iryami</h1>
