@@ -34,6 +34,7 @@ interface Experience {
   duration: string
   technologies: string[]
   achievements: string[]
+  companyUrl?: string
 }
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
     {
       id: 'quad',
       title: 'Quad',
-      description: 'A full-stack marketplace for college students with secure authentication, Stripe payments, student email verification, real-time messaging, AI-powered search/tagging for image-based listings, and cart/order flows. Launching soon to iOS App Store.',
+      description: 'A full-stack marketplace for college students with secure JWT authentication, Stripe payments, student email verification, real-time messaging, AI-powered search/tagging to enable image-based listings, and cart/order flows. Launching soon to iOS App Store.',
       technologies: ['TypeScript', 'Node.js', 'React Native', 'MySQL', 'Express', 'Socket.io', 'Cloudinary', 'Stripe', 'Expo', 'Tamagui'],
       githubUrl: 'https://github.com/michaeliryami/Quad-App',
       demoUrl: 'https://quad-app.com',
@@ -54,13 +55,13 @@ function App() {
       featured: true
     },
     {
-      id: 'noptr',
-      title: 'NOPTR',
-      description: 'A full-stack prompt engineering platform with version diffing, side-by-side output comparison, AI-powered prompt suggestions, feedback-driven prompt refinement, and adaptive context management for advanced system prompt development.',
-      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Render', 'Vercel', 'Chakra-ui'],
-      githubUrl: 'https://github.com/michaeliryami/LLP',
-      demoUrl: 'https://noptr.app',
-      images: ['/noptr/1.png', '/noptr/2.png', '/noptr/3.png', '/noptr/4.png'],
+      id: 'noomo',
+      title: 'Noomo AI',
+      description: 'An AI-powered educational platform combining GPT-4 content synthesis with neural music generation models to create mnemonic jingles; implemented scalable Supabase backend and Stripe-driven subscription microservices.',
+      technologies: ['TypeScript', 'Next.js', 'React', 'Supabase', 'Vercel'],
+      githubUrl: 'https://github.com/michaeliryami/Noomo-AI',
+      demoUrl: 'https://noomoai.com',
+      images: ['/noomo/1.png', '/noomo/3.png', '/noomo/4.png', '/noomo/5.png', '/noomo/6.png'],
       featured: true
     },
     {
@@ -88,26 +89,27 @@ function App() {
     {
       id: 'alias-intelligence',
       company: 'Alias Intelligence',
-      position: 'Full Stack Software Engineering Intern',
+      position: 'Software Engineering Intern | Contract Software Engineer',
       location: 'Austin, TX',
       duration: 'June 2025 – Present',
       technologies: ['TypeScript', 'React', 'Express', 'Node.js', 'AWS', 'V0', 'Tailwind', 'Python', 'Docker'],
       achievements: [
         'Reported directly to the CTO on various strategic initiatives to improve customer experience, enhance the overall product offering, and increase productivity of the Alias team in supporting background check-related tasks',
-        'Implemented Alias Dispatch to efficiently process customer feedback into a centralized location within the database and internal portal, and integrated it with a Slack API to alert necessary teams in real-time; this lowered the time to respond to client concerns and increased overall customer service and satisfaction',
-        'Integrated Client Relations Brain through connecting the Missive webhook and the internal API to completely automate the review of and response to inbound emails to the client relations team by leveraging LLMs to parse the contents, sentiment and key words; saved 1-2 hours in response and task completion time per email through automating important flows such as Dispatch and Order Entry'
+        'Implemented Alias Dispatch, a real-time feedback routing system integrating Slack API alerts and internal portals; reduced client response time and improved service quality',
+        'Launched a brand new quality control system that automatically scored investigations through LLM integration and other algorithms; this saved 30 minutes per investigation as opposed to human scoring; displayed aggregations on an investigator tree'
       ]
     },
     {
-      id: 'coder-school',
-      company: 'The Coder School',
-      position: 'Code Coach',
-      location: 'Syosset, NY',
-      duration: '2022 - 2024',
-      technologies: ['Python', 'Java', 'Scratch', 'Lua', 'HTML5'],
+      id: 'clozone-ai',
+      company: 'Clozone AI',
+      position: 'Cofounder & CTO',
+      location: 'Tampa, FL',
+      duration: 'September 2025 – Present',
+      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Chakra-ui', 'Vapi'],
       achievements: [
-        'Taught classes to over 50 students in various programming languages (i.e., Python, Java, Scratch, Lua, HTML5)'
-      ]
+        'Built an AI-powered sales training platform featuring real-time voice conversations with AI customers, automated performance grading against custom rubrics, script generation, and comprehensive assignment management for enterprise insurance sales teams to increase policy sales, call confidence, and reduce training time and costs'
+      ],
+      companyUrl: 'https://clozone.ai'
     }
   ]
 
@@ -264,8 +266,8 @@ function App() {
                         <span className="gpa">GPA: 3.9/4.0</span> | 
                         <span className="graduation">Anticipated Graduation: May 2028</span>
                       </p>
-                      <p className="education-activities">
-                        Member of Michigan Quantitative Consulting and Finance Group; worked in a team to develop a pairs trading algorithm to identify and analyze cointegrated stocks and purchase the undervalued stock while shorting the overvalued stock
+                      <p className="education-coursework">
+                        <strong>Relevant Coursework:</strong> Introductory Data Structures, Discrete Math, Computational Linear Algebra, Statistics and Data Analysis
                       </p>
                     </div>
                   </div>
@@ -289,6 +291,7 @@ function App() {
                         <h4>Frontend & Mobile</h4>
                         <ul>
                           <li>React & React Native</li>
+                          <li>Next.js</li>
                           <li>Expo & Tamagui</li>
                           <li>Chakra UI & Tailwind</li>
                           <li>HTML5 & CSS3</li>
@@ -299,20 +302,21 @@ function App() {
                         <h4>Backend & DevOps</h4>
                         <ul>
                           <li>Node.js & Express</li>
-                          <li>Supabase & PostgreSQL</li>
+                          <li>Supabase & Postgres</li>
                           <li>MySQL & MongoDB</li>
                           <li>AWS Development Kit</li>
-                          <li>Docker</li>
+                          <li>Docker & Git</li>
+                          <li>Vercel & Render</li>
                         </ul>
                       </div>
                       
                       <div className="skill-category">
-                        <h4>AI & ML</h4>
+                        <h4>AI & Development Tools</h4>
                         <ul>
                           <li>Scikit Learn</li>
                           <li>TensorFlow</li>
                           <li>LLM Integration</li>
-                          <li>AI-powered Search</li>
+                          <li>Cursor & Claude Code</li>
                         </ul>
                       </div>
                     </div>
@@ -347,7 +351,20 @@ function App() {
                 <div key={experience.id} className="experience-card">
                   <div className="experience-header-card">
                     <div className="experience-company">
-                      <h3>{experience.company}</h3>
+                      {experience.companyUrl ? (
+                        <h3>
+                          <a 
+                            href={experience.companyUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{ color: 'inherit', textDecoration: 'none', borderBottom: '2px solid #646cff' }}
+                          >
+                            {experience.company}
+                          </a>
+                        </h3>
+                      ) : (
+                        <h3>{experience.company}</h3>
+                      )}
                       <p className="experience-position">{experience.position}</p>
                     </div>
                     <div className="experience-meta">
