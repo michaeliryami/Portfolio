@@ -59,9 +59,19 @@ function App() {
       title: 'Noomo AI',
       description: 'An AI-powered educational platform combining GPT-4 content synthesis with neural music generation models to create mnemonic jingles; implemented scalable Supabase backend and Stripe-driven subscription microservices.',
       technologies: ['TypeScript', 'Next.js', 'React', 'Supabase', 'Vercel'],
-      githubUrl: 'https://github.com/michaeliryami/Noomo-AI',
+      githubUrl: 'https://github.com/michaeliryami/Study-Songs',
       demoUrl: 'https://noomoai.com',
       images: ['/noomo/1.png', '/noomo/3.png', '/noomo/4.png', '/noomo/5.png', '/noomo/6.png'],
+      featured: true
+    },
+    {
+      id: 'noptr',
+      title: 'NOPTR',
+      description: 'A full-stack prompt engineering platform with version diffing, side-by-side output comparison, AI-powered prompt suggestions, feedback-driven prompt refinement, and adaptive context management for advanced system prompt development.',
+      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Render', 'Vercel', 'Chakra-ui'],
+      githubUrl: 'https://github.com/michaeliryami/LLP',
+      demoUrl: 'https://noptr.app',
+      images: ['/noptr/1.png', '/noptr/2.png', '/noptr/3.png', '/noptr/4.png'],
       featured: true
     },
     {
