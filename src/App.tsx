@@ -45,6 +45,15 @@ function App() {
 
   const projects: Project[] = [
     {
+      id: 'refill',
+      title: 'Refill',
+      description: 'An app that lets people rate restaurants on what they actually care about, like free refills, bread baskets, and bathroom attendants. Coming soon to iOS App Store.',
+      technologies: ['React Native', 'TypeScript', 'Expo'],
+      githubUrl: 'https://github.com/michaeliryami/Refill',
+      images: ['/refill/1.png', '/refill/2.png', '/refill/3.png', '/refill/4.png', '/refill/5.png', '/refill/6.png'],
+      featured: true
+    },
+    {
       id: 'quad',
       title: 'Quad',
       description: 'A full-stack marketplace for college students with secure JWT authentication, Stripe payments, student email verification, real-time messaging, AI-powered search/tagging to enable image-based listings, and cart/order flows. Launching soon to iOS App Store.',
@@ -97,17 +106,30 @@ function App() {
 
   const experiences: Experience[] = [
     {
+      id: 'rallyup',
+      company: 'RallyUp',
+      position: 'Generative AI Engineering Intern',
+      location: 'Remote',
+      duration: 'November 2025 – Present',
+      technologies: ['TypeScript', 'React', 'AWS'],
+      achievements: [
+        'Implemented an AI voice interview system with GPT summarizations storing crucial user voice profiles in DynamoDB to enhance RAG-based LinkedIn content generation, allowing for more personalized and accurate LinkedIn posts',
+        'Architected intelligent web scraping system with Cheerio and Playwright that extracts company data from JavaScript-rendered sites providing enriched contextual data to improve LLM output quality and content relevance'
+      ],
+      companyUrl: 'https://rallyup.team'
+    },
+    {
       id: 'alias-intelligence',
       company: 'Alias Intelligence',
       position: 'Software Engineering Intern | Contract Software Engineer',
       location: 'Austin, TX',
-      duration: 'June 2025 – Present',
-      technologies: ['TypeScript', 'React', 'Express', 'Node.js', 'AWS', 'V0', 'Tailwind', 'Python', 'Docker'],
+      duration: 'June 2025 – November 2025',
+      technologies: ['TypeScript', 'React', 'Express', 'Node.js', 'AWS', 'Python', 'Docker'],
       achievements: [
         'Reported directly to the CTO on various strategic initiatives to improve customer experience, enhance the overall product offering, and increase productivity of the Alias team in supporting background check-related tasks',
-        'Implemented Alias Dispatch, a real-time feedback routing system integrating Slack API alerts and internal portals; reduced client response time and improved service quality',
         'Launched a brand new quality control system that automatically scored investigations through LLM integration and other algorithms; this saved 30 minutes per investigation as opposed to human scoring; displayed aggregations on an investigator tree'
-      ]
+      ],
+      companyUrl: 'https://aliasintelligence.com'
     },
     {
       id: 'clozone-ai',
@@ -117,7 +139,7 @@ function App() {
       duration: 'September 2025 – Present',
       technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Chakra-ui', 'Vapi'],
       achievements: [
-        'Built an AI-powered sales training platform featuring real-time voice conversations with AI customers, automated performance grading against custom rubrics, script generation, and comprehensive assignment management for enterprise insurance sales teams to increase policy sales, call confidence, and reduce training time and costs'
+        'Built an AI-powered insurance sales training platform using hyper-realistic real time AI customers, automated performance grading, and comprehensive assignment management; increases call confidence and close rate; pilot with 10+ real reps'
       ],
       companyUrl: 'https://clozone.ai'
     }
@@ -223,7 +245,7 @@ function App() {
           <a href="https://www.linkedin.com/in/michael-iryami-359698330/" className="social-icon linkedin" target="_blank" rel="noopener noreferrer">
             <Linkedin size={20} />
           </a>
-          <a href="/resume.docx" className="social-icon resume" target="_blank" rel="noopener noreferrer">
+          <a href="/Michael Iryami.pdf" className="social-icon resume" target="_blank" rel="noopener noreferrer">
             <FileText size={20} />
           </a>
         </div>
@@ -478,7 +500,7 @@ function App() {
                         <Github size={18} />
                         GitHub
                       </a>
-                      {project.id === 'quad' ? (
+                      {project.id === 'quad' || project.id === 'refill' ? (
                         <div className="project-link demo-link launching-soon">
                           <CheckCircle size={18} />
                           Launching Soon to App Store
