@@ -161,19 +161,6 @@ function App() {
       ],
       companyUrl: 'https://rallyup.team'
     },
-    {
-      id: 'buo',
-      company: 'Buo',
-      position: 'Cofounder & CTO',
-      location: 'Remote',
-      duration: 'December 2025 – Present',
-      technologies: ['TypeScript', 'React Native', 'Node.js', 'Supabase', 'Expo'],
-      achievements: [
-        'Built an AI-powered health coach that integrates with campus dining halls and gyms via agentic scrapers, orchestrating 20+ AI agents to deliver personalized workout and meal plans with automated motivation',
-        'Led weekly sprint calls with 3+ developers delegating and reviewing tasks; worked with the CEO and marketing team to deliver product development features; 900+ downloads; 60+ 5-star reviews'
-      ],
-      companyUrl: 'https://joinbuo.com'
-    }
   ]
 
   const nextImage = (projectId: string) => {
@@ -253,7 +240,7 @@ function App() {
             className={`nav-link ${activeSection === 'experience' ? 'active' : ''}`}
             onClick={() => setActiveSection('experience')}
           >
-            Experience
+            Work Experience
           </button>
           <button 
             className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
@@ -536,6 +523,16 @@ function App() {
                           <CheckCircle size={18} />
                           "Refill on the app store"
                         </div>
+                      ) : project.id === 'buo' ? (
+                        <a 
+                          href={project.demoUrl} 
+                          className="project-link demo-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <CheckCircle size={18} />
+                          Buo on the App Store
+                        </a>
                       ) : project.demoUrl ? (
                         <a 
                           href={project.demoUrl} 
