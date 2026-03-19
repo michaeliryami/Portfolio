@@ -45,6 +45,36 @@ function App() {
 
   const projects: Project[] = [
     {
+      id: 'nextround',
+      title: 'NextRound AI',
+      description: 'An interview prep platform enabling real-time AI-powered mock interviews, HireVue simulations, and coffee chat practice with live video/audio capture and advanced insights; achieving 100% interview-to-offer conversion across 20+ users.',
+      technologies: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Supabase', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/michaeliryami/NextRound',
+      demoUrl: 'https://thenextround.ai',
+      images: ['/nextround/1.png', '/nextround/2.png', '/nextround/3.png', '/nextround/4.png', '/nextround/5.png'],
+      featured: true
+    },
+    {
+      id: 'clozone',
+      title: 'Clozone AI',
+      description: 'An AI-powered insurance sales training platform using hyper-realistic real-time AI customers, automated performance grading, and comprehensive assignment management; cuts training time by 6+ hours weekly; pilot with 10+ real reps.',
+      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Vapi'],
+      githubUrl: 'https://github.com/michaeliryami/Clozone',
+      demoUrl: 'https://clozone.ai',
+      images: ['/clozone/1.png', '/clozone/2.png', '/clozone/3.png', '/clozone/4.png', '/clozone/5.png'],
+      featured: true
+    },
+    {
+      id: 'buo',
+      title: 'Buo',
+      description: 'An AI-powered health coach that integrates with campus dining halls and gyms via agentic scrapers, orchestrating 20+ AI agents to deliver personalized workout and meal plans with automated motivation. 900+ downloads and 60+ 5-star reviews on the iOS App Store.',
+      technologies: ['TypeScript', 'React Native', 'Node.js', 'Supabase', 'Expo'],
+      githubUrl: 'https://github.com/michaeliryami/Buo',
+      demoUrl: 'https://joinbuo.com',
+      images: ['/buo/1.png', '/buo/2.png', '/buo/3.png', '/buo/4.png', '/buo/5.png'],
+      featured: true
+    },
+    {
       id: 'refill',
       title: 'Refill',
       description: 'An app that lets people rate restaurants on what they actually care about, like free refills, bread baskets, and bathroom attendants. Coming soon to iOS App Store.',
@@ -106,42 +136,43 @@ function App() {
 
   const experiences: Experience[] = [
     {
-      id: 'rallyup',
-      company: 'RallyUp',
-      position: 'Generative AI Engineering Intern',
-      location: 'Remote',
-      duration: 'November 2025 – Present',
-      technologies: ['TypeScript', 'React', 'AWS'],
-      achievements: [
-        'Implemented an AI voice interview system with GPT summarizations storing crucial user voice profiles in DynamoDB to enhance RAG-based LinkedIn content generation, allowing for more personalized and accurate LinkedIn posts',
-        'Architected intelligent web scraping system with Cheerio and Playwright that extracts company data from JavaScript-rendered sites providing enriched contextual data to improve LLM output quality and content relevance'
-      ],
-      companyUrl: 'https://rallyup.team'
-    },
-    {
       id: 'alias-intelligence',
       company: 'Alias Intelligence',
-      position: 'Software Engineering Intern | Contract Software Engineer',
+      position: 'Software Engineering Intern',
       location: 'Austin, TX',
-      duration: 'June 2025 – November 2025',
+      duration: 'June 2025 – Present',
       technologies: ['TypeScript', 'React', 'Express', 'Node.js', 'AWS', 'Python', 'Docker'],
       achievements: [
-        'Reported directly to the CTO on various strategic initiatives to improve customer experience, enhance the overall product offering, and increase productivity of the Alias team in supporting background check-related tasks',
-        'Launched a brand new quality control system that automatically scored investigations through LLM integration and other algorithms; this saved 30 minutes per investigation as opposed to human scoring; displayed aggregations on an investigator tree'
+        'Reported directly to the CTO on various strategic initiatives to improve customer experience, enhance the overall product offering by improving 5+ internal workflows to increase productivity of Alias in supporting 1600+ enterprise clients',
+        'Designed and deployed a quality control system that automatically scored investigations through LLMs and other algorithms; saved 30 minutes per investigation across 600+ investigations/week; visualized results via tree-based aggregation UI'
       ],
       companyUrl: 'https://aliasintelligence.com'
     },
     {
-      id: 'clozone-ai',
-      company: 'Clozone AI',
-      position: 'Cofounder & CTO',
-      location: 'Tampa, FL',
-      duration: 'September 2025 – Present',
-      technologies: ['TypeScript', 'Node.js', 'React', 'Supabase', 'Express', 'Chakra-ui', 'Vapi'],
+      id: 'rallyup',
+      company: 'RallyUp',
+      position: 'AI Engineering Intern',
+      location: 'Remote',
+      duration: 'December 2025 – March 2026',
+      technologies: ['TypeScript', 'React', 'AWS', 'Node.js'],
       achievements: [
-        'Built an AI-powered insurance sales training platform using hyper-realistic real time AI customers, automated performance grading, and comprehensive assignment management; increases call confidence and close rate; pilot with 10+ real reps'
+        'Implemented an AI evaluation pipeline for RallyUp\'s AI content; utilized sequential GPT scoring (Relevance, Accuracy, Speed, Engagement), and automated logging to Google Sheets via AWS Lambda; evaluates 100+ content items daily',
+        'Refactored the Agentic Hub into a one-size-fits-all orchestration layer by introducing an agent registry architecture, enabling any Lambda function to invoke and route to registered agents through a unified interface; supports 5+ separate AI workflows'
       ],
-      companyUrl: 'https://clozone.ai'
+      companyUrl: 'https://rallyup.team'
+    },
+    {
+      id: 'buo',
+      company: 'Buo',
+      position: 'Cofounder & CTO',
+      location: 'Remote',
+      duration: 'December 2025 – Present',
+      technologies: ['TypeScript', 'React Native', 'Node.js', 'Supabase', 'Expo'],
+      achievements: [
+        'Built an AI-powered health coach that integrates with campus dining halls and gyms via agentic scrapers, orchestrating 20+ AI agents to deliver personalized workout and meal plans with automated motivation',
+        'Led weekly sprint calls with 3+ developers delegating and reviewing tasks; worked with the CEO and marketing team to deliver product development features; 900+ downloads; 60+ 5-star reviews'
+      ],
+      companyUrl: 'https://joinbuo.com'
     }
   ]
 
@@ -298,8 +329,9 @@ function App() {
                         <span className="gpa">GPA: 3.9/4.0</span> | 
                         <span className="graduation">Anticipated Graduation: May 2028</span>
                       </p>
+                      <p className="education-major"><strong>Major:</strong> Computer Science</p>
                       <p className="education-coursework">
-                        <strong>Relevant Coursework:</strong> Introductory Data Structures, Discrete Math, Computational Linear Algebra, Statistics and Data Analysis
+                        <strong>Relevant Coursework:</strong> Data Structures and Algorithms, Discrete Math, Computer Science Principles, Introductory Data Structures
                       </p>
                     </div>
                   </div>
@@ -324,8 +356,7 @@ function App() {
                         <ul>
                           <li>React & React Native</li>
                           <li>Next.js</li>
-                          <li>Expo & Tamagui</li>
-                          <li>Chakra UI & Tailwind</li>
+                          <li>Tailwind CSS</li>
                           <li>HTML5 & CSS3</li>
                         </ul>
                       </div>
@@ -334,21 +365,19 @@ function App() {
                         <h4>Backend & DevOps</h4>
                         <ul>
                           <li>Node.js & Express</li>
-                          <li>Supabase & Postgres</li>
-                          <li>MySQL & MongoDB</li>
-                          <li>AWS Development Kit</li>
-                          <li>Docker & Git</li>
-                          <li>Vercel & Render</li>
+                          <li>Supabase</li>
+                          <li>AWS</li>
+                          <li>Docker</li>
+                          <li>Git</li>
                         </ul>
                       </div>
                       
                       <div className="skill-category">
                         <h4>AI & Development Tools</h4>
                         <ul>
-                          <li>Scikit Learn</li>
-                          <li>TensorFlow</li>
+                          <li>Cursor</li>
+                          <li>Claude Code</li>
                           <li>LLM Integration</li>
-                          <li>Cursor & Claude Code</li>
                         </ul>
                       </div>
                     </div>
@@ -358,10 +387,10 @@ function App() {
                     <h3>Interests</h3>
                     <div className="interests-tags">
                       <span className="interest-tag">New York Mets</span>
-                      <span className="interest-tag">Michigan Sports</span>
                       <span className="interest-tag">Pickleball</span>
                       <span className="interest-tag">Settlers of Catan</span>
                       <span className="interest-tag">Survivor</span>
+                      <span className="interest-tag">Drumming</span>
                     </div>
                   </div>
                 </div>
@@ -491,19 +520,21 @@ function App() {
                     </div>
                     
                     <div className="project-links">
-                      <a 
-                        href={project.githubUrl} 
-                        className="project-link github-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github size={18} />
-                        GitHub
-                      </a>
+                      {project.id !== 'clozone' && project.id !== 'buo' && project.id !== 'nextround' && (
+                        <a 
+                          href={project.githubUrl} 
+                          className="project-link github-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github size={18} />
+                          GitHub
+                        </a>
+                      )}
                       {project.id === 'quad' || project.id === 'refill' ? (
                         <div className="project-link demo-link launching-soon">
                           <CheckCircle size={18} />
-                          Launching Soon to App Store
+                          "Refill on the app store"
                         </div>
                       ) : project.demoUrl ? (
                         <a 

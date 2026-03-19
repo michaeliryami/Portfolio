@@ -755,15 +755,17 @@ body {
   cursor: pointer;
 }
 
-/* Mobile-specific styling for Quad and Refill projects */
+/* Mobile-specific styling for Quad, Refill, and Buo projects */
 .project-card[data-project="quad"] .project-image,
-.project-card[data-project="refill"] .project-image {
+.project-card[data-project="refill"] .project-image,
+.project-card[data-project="buo"] .project-image {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   padding: 20px;
 }
 
 .project-card[data-project="quad"] .image-slideshow,
-.project-card[data-project="refill"] .image-slideshow {
+.project-card[data-project="refill"] .image-slideshow,
+.project-card[data-project="buo"] .image-slideshow {
   width: 100%;
   height: 100%;
   display: flex;
@@ -772,7 +774,8 @@ body {
 }
 
 .project-card[data-project="quad"] .slideshow-image,
-.project-card[data-project="refill"] .slideshow-image {
+.project-card[data-project="refill"] .slideshow-image,
+.project-card[data-project="buo"] .slideshow-image {
   width: auto;
   height: 100%;
   max-width: 100%;
@@ -785,14 +788,16 @@ body {
 }
 
 .project-card[data-project="quad"] .slideshow-image:hover,
-.project-card[data-project="refill"] .slideshow-image:hover {
+.project-card[data-project="refill"] .slideshow-image:hover,
+.project-card[data-project="buo"] .slideshow-image:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* Mobile device frame effect */
 .project-card[data-project="quad"] .image-slideshow::before,
-.project-card[data-project="refill"] .image-slideshow::before {
+.project-card[data-project="refill"] .image-slideshow::before,
+.project-card[data-project="buo"] .image-slideshow::before {
   content: '';
   position: absolute;
   top: 50%;
