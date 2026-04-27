@@ -408,7 +408,8 @@ button {
 
 .education-section h3,
 .skills-section h3,
-.interests-section h3 {
+.interests-section h3,
+.experience-inline > h3 {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;

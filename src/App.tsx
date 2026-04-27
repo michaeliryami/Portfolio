@@ -123,15 +123,6 @@ function App() {
       images: ['/sublet/1.png', '/sublet/2.png', '/sublet/3.png', '/sublet/4.png', '/sublet/5.png', '/sublet/6.png', '/sublet/7.png', '/sublet/8.png'],
       featured: true
     },
-    {
-      id: 'portfolio',
-      title: 'Portfolio',
-      description: 'This responsive portfolio website showcasing my work and skills as a software engineer.',
-      technologies: ['React', 'TypeScript', 'Vite', 'CSS3'],
-      githubUrl: 'https://github.com/michaeliryami/Portfolio',
-      images: ['/home.png'],
-      featured: false
-    }
   ]
 
   const experiences: Experience[] = [
@@ -234,31 +225,25 @@ function App() {
             className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
             onClick={() => setActiveSection('home')}
           >
-            Home
+            Basic Stuff
           </button>
           <button 
-            className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
-            onClick={() => setActiveSection('about')}
+            className={`nav-link ${activeSection === 'resume' ? 'active' : ''}`}
+            onClick={() => setActiveSection('resume')}
           >
-            About
-          </button>
-          <button 
-            className={`nav-link ${activeSection === 'experience' ? 'active' : ''}`}
-            onClick={() => setActiveSection('experience')}
-          >
-            Work Experience
+            What's On My Resume
           </button>
           <button 
             className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
             onClick={() => setActiveSection('projects')}
           >
-            Projects
+            Stuff I Made
           </button>
           <button 
             className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
             onClick={() => setActiveSection('contact')}
           >
-            Contact
+            Get in Touch
           </button>
         </nav>
         
@@ -302,11 +287,11 @@ function App() {
           </section>
         )}
 
-        {/* About Section */}
-        {activeSection === 'about' && (
+        {/* Resume Section (About + Work Experience) */}
+        {activeSection === 'resume' && (
           <section className="about-section">
             <div className="about-header">
-              <h2 className="section-title">About Me</h2>
+              <h2 className="section-title">What's on my resume</h2>
               <div className="about-content">
                 <div className="about-text">
                   <p className="about-intro">
@@ -326,6 +311,53 @@ function App() {
                       <p className="education-coursework">
                         <strong>Relevant Coursework:</strong> Data Structures and Algorithms, Discrete Math, Computer Science Principles, Introductory Data Structures
                       </p>
+                    </div>
+                  </div>
+                  
+                  <div className="experience-inline">
+                    <h3>Work Experience</h3>
+                    <div className="experience-timeline">
+                      {experiences.map((experience) => (
+                        <div key={experience.id} className="experience-card">
+                          <div className="experience-header-card">
+                            <div className="experience-company">
+                              {experience.companyUrl ? (
+                                <h3>
+                                  <a 
+                                    href={experience.companyUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                  >
+                                    {experience.company}
+                                  </a>
+                                </h3>
+                              ) : (
+                                <h3>{experience.company}</h3>
+                              )}
+                              <p className="experience-position">{experience.position}</p>
+                            </div>
+                            <div className="experience-meta">
+                              <p className="experience-location">{experience.location}</p>
+                              <p className="experience-duration">{experience.duration}</p>
+                            </div>
+                          </div>
+                          
+                          <div className="experience-technologies">
+                            {experience.technologies.map((tech) => (
+                              <span key={tech} className="tech-tag experience-tech">{tech}</span>
+                            ))}
+                          </div>
+                          
+                          <div className="experience-achievements">
+                            <h4>Key Achievements:</h4>
+                            <ul>
+                              {experience.achievements.map((achievement, index) => (
+                                <li key={index}>{achievement}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   
@@ -391,67 +423,12 @@ function App() {
             </div>
           </section>
         )}
-
-        {/* Experience Section */}
-        {activeSection === 'experience' && (
-          <section className="experience-section">
-            <div className="experience-header">
-              <h2 className="section-title">Work Experience</h2>
-              <p className="section-subtitle">My professional journey and achievements</p>
-            </div>
-            
-            <div className="experience-timeline">
-              {experiences.map((experience) => (
-                <div key={experience.id} className="experience-card">
-                  <div className="experience-header-card">
-                    <div className="experience-company">
-                      {experience.companyUrl ? (
-                        <h3>
-                          <a 
-                            href={experience.companyUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            style={{ color: 'inherit', textDecoration: 'none', borderBottom: '2px solid #646cff' }}
-                          >
-                            {experience.company}
-                          </a>
-                        </h3>
-                      ) : (
-                        <h3>{experience.company}</h3>
-                      )}
-                      <p className="experience-position">{experience.position}</p>
-                    </div>
-                    <div className="experience-meta">
-                      <p className="experience-location">{experience.location}</p>
-                      <p className="experience-duration">{experience.duration}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="experience-technologies">
-                    {experience.technologies.map((tech) => (
-                      <span key={tech} className="tech-tag experience-tech">{tech}</span>
-                    ))}
-                  </div>
-                  
-                  <div className="experience-achievements">
-                    <h4>Key Achievements:</h4>
-                    <ul>
-                      {experience.achievements.map((achievement, index) => (
-                        <li key={index}>{achievement}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
         
         {/* Projects Section */}
         {activeSection === 'projects' && (
           <section className="projects-section">
             <div className="projects-header">
-              <h2 className="section-title">Featured Projects</h2>
+              <h2 className="section-title">Stuff I made</h2>
               <p className="section-subtitle">A showcase of my recent work and technical expertise</p>
             </div>
             
@@ -524,12 +501,7 @@ function App() {
                           GitHub
                         </a>
                       )}
-                      {project.id === 'quad' || project.id === 'refill' ? (
-                        <div className="project-link demo-link launching-soon">
-                          <CheckCircle size={18} />
-                          "Refill on the app store"
-                        </div>
-                      ) : project.id === 'buo' ? (
+                      {project.id === 'buo' ? (
                         <a 
                           href={project.demoUrl} 
                           className="project-link demo-link"
@@ -563,7 +535,7 @@ function App() {
         {activeSection === 'contact' && (
           <section className="contact-section">
             <div className="contact-header">
-              <h2 className="section-title">Get In Touch</h2>
+              <h2 className="section-title">Get in touch</h2>
               <p className="section-subtitle">I'm always interested in new opportunities and collaborations</p>
             </div>
             
