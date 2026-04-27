@@ -67,7 +67,7 @@ function App() {
     {
       id: 'buo',
       title: 'Buo',
-      description: 'An AI-powered health coach that integrates with campus dining halls and gyms via agentic scrapers, orchestrating 20+ AI agents to deliver personalized workout and meal plans with automated motivation. 900+ downloads and 60+ 5-star reviews on the iOS App Store.',
+      description: 'An AI-powered health coach that integrates with campus dining halls and gyms via agentic scrapers, orchestrating 20+ AI agents to deliver personalized workout and meal plans with automated motivation. 1900+ downloads and 60+ 5-star reviews on the iOS App Store.',
       technologies: ['TypeScript', 'React Native', 'Node.js', 'Supabase', 'Expo'],
       githubUrl: 'https://github.com/michaeliryami/Buo',
       demoUrl: 'https://joinbuo.com',
@@ -215,6 +215,12 @@ function App() {
 
   return (
     <div className="app">
+      {/* Ambient gradient orbs */}
+      <div className="bg-orbs" aria-hidden="true">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+      </div>
+
       {/* Header/Navigation */}
       <header className="header">
         <div className="header-left">
