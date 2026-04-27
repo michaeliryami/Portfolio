@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { 
   Mail, 
   MapPin, 
@@ -37,11 +37,54 @@ interface Experience {
   companyUrl?: string
 }
 
+interface CompanyLogo {
+  name: string
+  src: string
+  url: string
+  /** Visual scale knob to compensate for source images with extra padding. Default 1. */
+  scale?: number
+}
+
+const companyLogos: CompanyLogo[] = [
+  { name: 'Alias Intelligence', src: '/logos/alias.png',     url: 'https://aliasintelligence.com', scale: 1.6 },
+  { name: 'RallyUp',            src: '/logos/rallyup.png',   url: 'https://rallyup.team' },
+  { name: 'NextRound AI',       src: '/logos/nextround.png', url: 'https://thenextround.ai', scale: 2.6 },
+  { name: 'Clozone AI',         src: '/logos/clozone.png',   url: 'https://clozone.ai' },
+  { name: 'Buo',                src: '/logos/buo.png',       url: 'https://joinbuo.com' },
+]
+
 function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({})
   const [modalOpen, setModalOpen] = useState(false)
   const [modalProject, setModalProject] = useState<Project | null>(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(hover: none)').matches) return
+    const root = document.documentElement
+    let raf = 0
+    let tx = 0.5, ty = 0.5
+    let cx = 0.5, cy = 0.5
+    const tick = () => {
+      cx += (tx - cx) * 0.08
+      cy += (ty - cy) * 0.08
+      root.style.setProperty('--mx', cx.toFixed(4))
+      root.style.setProperty('--my', cy.toFixed(4))
+      root.style.setProperty('--mxpx', `${(cx * window.innerWidth).toFixed(2)}px`)
+      root.style.setProperty('--mypx', `${(cy * window.innerHeight).toFixed(2)}px`)
+      raf = requestAnimationFrame(tick)
+    }
+    const onMove = (e: MouseEvent) => {
+      tx = e.clientX / window.innerWidth
+      ty = e.clientY / window.innerHeight
+    }
+    window.addEventListener('mousemove', onMove, { passive: true })
+    raf = requestAnimationFrame(tick)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
 
   const projects: Project[] = [
     {
@@ -206,10 +249,11 @@ function App() {
 
   return (
     <div className="app">
-      {/* Ambient gradient orbs */}
+      {/* Ambient light shapes + starfield + cursor spotlight */}
       <div className="bg-orbs" aria-hidden="true">
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
+        <div className="stars stars-far" />
+        <div className="stars stars-near" />
+        <div className="spotlight" />
       </div>
 
       {/* Header/Navigation */}
@@ -267,8 +311,39 @@ function App() {
           <section className="hero-section">
             <div className="hero-content">
               <div className="hero-profile">
-                <div className="profile-image">
-                  <img src="/headshot.png" alt="Michael Iryami" className="profile-photo" />
+                <div className="profile-orbit">
+                  <div className="profile-image">
+                    <img src="/headshot.png" alt="Michael Iryami" className="profile-photo" />
+                  </div>
+                  <div className="float-logos">
+                    {companyLogos.map((logo, i) => (
+                      <a
+                        key={logo.name}
+                        href={logo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="float-logo"
+                        aria-label={`Visit ${logo.name}`}
+                        title={logo.name}
+                        style={{
+                          ['--phase' as string]: `${(-(i * 38) / companyLogos.length).toFixed(2)}s`,
+                          ['--delay' as string]: `${(i * 0.45).toFixed(2)}s`,
+                          ['--logo-scale' as string]: String(logo.scale ?? 1),
+                        } as React.CSSProperties}
+                      >
+                        <div className="float-logo-inner">
+                          <img
+                            src={logo.src}
+                            alt=""
+                            onError={(e) => {
+                              const el = (e.currentTarget as HTMLImageElement).closest('.float-logo') as HTMLElement | null
+                              if (el) el.style.display = 'none'
+                            }}
+                          />
+                        </div>
+                      </a>
+                    ))}
+                  </div>
                 </div>
                 <div className="hero-text">
                   <h1 className="hero-title">Michael Iryami</h1>
