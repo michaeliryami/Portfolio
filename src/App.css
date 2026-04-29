@@ -372,6 +372,7 @@ button {
   height: 132px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 22%;
   border: 1px solid var(--border-strong);
   box-shadow:
     0 0 0 6px rgba(255, 203, 5, 0.10),
