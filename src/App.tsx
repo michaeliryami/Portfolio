@@ -269,25 +269,25 @@ function App() {
             className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
             onClick={() => setActiveSection('home')}
           >
-            Basic Stuff
+            Info
           </button>
           <button 
             className={`nav-link ${activeSection === 'resume' ? 'active' : ''}`}
             onClick={() => setActiveSection('resume')}
           >
-            What's On My Resume
+            Experience
           </button>
           <button 
             className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
             onClick={() => setActiveSection('projects')}
           >
-            Stuff I Made
+            Projects
           </button>
           <button 
             className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
             onClick={() => setActiveSection('contact')}
           >
-            Get in Touch
+            Get in touch
           </button>
         </nav>
         
@@ -366,7 +366,7 @@ function App() {
         {activeSection === 'resume' && (
           <section className="about-section">
             <div className="about-header">
-              <h2 className="section-title">What's on my resume</h2>
+              <h2 className="section-title">Experience</h2>
               <div className="about-content">
                 <div className="about-text">
                   <p className="about-intro">
@@ -503,7 +503,7 @@ function App() {
         {activeSection === 'projects' && (
           <section className="projects-section">
             <div className="projects-header">
-              <h2 className="section-title">Stuff I made</h2>
+              <h2 className="section-title">Projects</h2>
               <p className="section-subtitle">A showcase of my recent work and technical expertise</p>
             </div>
             
